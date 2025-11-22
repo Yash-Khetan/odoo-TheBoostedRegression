@@ -177,14 +177,7 @@ const Deliveries = () => {
                       <td className="py-4 px-6">{getStatusBadge(delivery.status)}</td>
                       <td className="py-4 px-6">
                         <div className="flex gap-2" onClick={(e) => e.stopPropagation()}>
-        <CardFooter className="flex justify-between items-center py-4">
-          <p className="text-sm text-gray-500">Showing {deliveries.length} deliveries</p>
-          <div className="flex gap-2">
-            <Button variant="outline" size="sm" disabled>Previous</Button>
-            <Button variant="outline" size="sm">1</Button>
-            <Button variant="outline" size="sm">Next</Button>
-          </div>
-        </CardFooter>     {delivery.status === 'draft' && <Button variant="outline" size="sm">Edit</Button>}
+                          {delivery.status === 'draft' && <Button variant="outline" size="sm">Edit</Button>}
                           <Button variant="ghost" size="icon">
                             <MoreVertical className="w-4 h-4" />
                           </Button>
@@ -198,12 +191,11 @@ const Deliveries = () => {
           </div>
         </CardContent>
         <CardFooter className="flex justify-between items-center py-4">
-          <p className="text-sm text-gray-500">Showing 1-4 of 234 deliveries</p>
+          <p className="text-sm text-gray-500">Showing {deliveries.length} deliveries</p>
           <div className="flex gap-2">
             <Button variant="outline" size="sm" disabled>Previous</Button>
             <Button variant="outline" size="sm">1</Button>
-            <Button variant="outline" size="sm">2</Button>
-            <Button variant="outline" size="sm">Next</Button>
+            <Button variant="outline" size="sm" disabled>Next</Button>
           </div>
         </CardFooter>
       </Card>

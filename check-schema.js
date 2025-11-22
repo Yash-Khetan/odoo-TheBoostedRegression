@@ -5,48 +5,37 @@ async function checkSchema() {
   try {
     console.log("🔍 CHECKING DATABASE SCHEMA\n");
     
-    // Check products table structure
-    console.log("📦 PRODUCTS table columns:");
-    const productCols = await client.query(`
-      SELECT column_name, data_type 
+    // Check receipts table structure
+    console.log("📦 RECEIPTS table columns:");
+    const receiptCols = await client.query(`
+      SELECT column_name, data_type, is_nullable, column_default
       FROM information_schema.columns 
-      WHERE table_name = 'products' 
+      WHERE table_name = 'receipts' 
       ORDER BY ordinal_position
     `);
-    console.table(productCols.rows);
+    console.table(receiptCols.rows);
     
-    // Check inventory table structure
-    console.log("\n📊 INVENTORY table columns:");
-    const inventoryCols = await client.query(`
-      SELECT column_name, data_type 
+    // Check deliveries table structure
+    console.log("\n📦 DELIVERIES table columns:");
+    const deliveryCols = await client.query(`
+      SELECT column_name, data_type, is_nullable, column_default
       FROM information_schema.columns 
-      WHERE table_name = 'inventory' 
+      WHERE table_name = 'deliveries' 
       ORDER BY ordinal_position
     `);
-    console.table(inventoryCols.rows);
+    console.table(deliveryCols.rows);
     
-    // Check warehouses table structure
-    console.log("\n🏢 WAREHOUSES table columns:");
-    const warehouseCols = await client.query(`
-      SELECT column_name, data_type 
-      FROM information_schema.columns 
-      WHERE table_name = 'warehouses' 
-      ORDER BY ordinal_position
-    `);
-    console.table(warehouseCols.rows);
+    // Check counts
+    const receiptCount = await client.query('SELECT COUNT(*) FROM receipts');
+    const deliveryCount = await client.query('SELECT COUNT(*) FROM deliveries');
+    const receiptItemsCount = await client.query('SELECT COUNT(*) FROM receipt_items');
+    const deliveryItemsCount = await client.query('SELECT COUNT(*) FROM delivery_items');
     
-    // Show actual data
-    console.log("\n📦 Actual products data:");
-    const products = await client.query('SELECT * FROM products LIMIT 5');
-    console.table(products.rows);
-    
-    console.log("\n📊 Actual inventory data:");
-    const inventory = await client.query('SELECT * FROM inventory LIMIT 5');
-    console.table(inventory.rows);
-    
-    console.log("\n🏢 Actual warehouses data:");
-    const warehouses = await client.query('SELECT * FROM warehouses LIMIT 5');
-    console.table(warehouses.rows);
+    console.log("\n📊 Current counts:");
+    console.log(`- Receipts: ${receiptCount.rows[0].count}`);
+    console.log(`- Deliveries: ${deliveryCount.rows[0].count}`);
+    console.log(`- Receipt Items: ${receiptItemsCount.rows[0].count}`);
+    console.log(`- Delivery Items: ${deliveryItemsCount.rows[0].count}`);
     
   } catch (err) {
     console.error("\n❌ ERROR:", err.message);

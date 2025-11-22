@@ -4,11 +4,12 @@ export const getAllDeliveries = async (req, res) => {
   try {
     const result = await pool.query(
       `SELECT d.delivery_id as id, d.customer_name as customer, d.delivery_date as schedule_date,
-        d.reference_number, d.notes, d.created_at, d.created_by, 'done' as status,
+        d.reference_number, d.notes, d.created_at, d.created_by, 
+        COALESCE(d.status, 'draft') as status,
         COUNT(di.id) as item_count 
       FROM deliveries d 
       LEFT JOIN delivery_items di ON d.delivery_id = di.delivery_id 
-      GROUP BY d.delivery_id, d.customer_name, d.delivery_date, d.reference_number, d.notes, d.created_at, d.created_by
+      GROUP BY d.delivery_id, d.customer_name, d.delivery_date, d.reference_number, d.notes, d.created_at, d.created_by, d.status
       ORDER BY d.created_at DESC`
     );
     res.json(result.rows);
@@ -23,7 +24,7 @@ export const getDeliveryById = async (req, res) => {
     
     const deliveryResult = await pool.query(
       `SELECT delivery_id as id, customer_name as customer, delivery_date as schedule_date,
-        reference_number, notes, created_at, created_by, 'done' as status
+        reference_number, notes, created_at, created_by, COALESCE(status, 'draft') as status
       FROM deliveries WHERE delivery_id=$1`,
       [deliveryId]
     );

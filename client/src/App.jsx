@@ -9,6 +9,8 @@ import Receipts from './pages/Receipts';
 import ReceiptDetail from './pages/ReceiptDetail';
 import Deliveries from './pages/Deliveries';
 import DeliveryDetail from './pages/DeliveryDetail';
+import Warehouses from './pages/Warehouses';
+import WarehouseDetail from './pages/WarehouseDetail';
 import CreateOrder from './pages/CreateOrder';
 import Reports from './pages/Reports';
 import Settings from './pages/Settings';
@@ -29,6 +31,8 @@ function App() {
           <Route path="receipts/:id" element={<ReceiptDetail />} />
           <Route path="deliveries" element={<Deliveries />} />
           <Route path="deliveries/:id" element={<DeliveryDetail />} />
+          <Route path="warehouses" element={<Warehouses />} />
+          <Route path="warehouses/:warehouseId" element={<WarehouseDetail />} />
           <Route path="create-order" element={<CreateOrder />} />
           <Route path="reports" element={<Reports />} />
           <Route path="settings" element={<Settings />} />

@@ -35,4 +35,11 @@ export const deliveriesAPI = {
   validate: (deliveryId) => api.post(`/deliveries/${deliveryId}/validate`),
 };
 
+// Warehouses API
+export const warehousesAPI = {
+  getAll: () => api.get('/warehouses'),
+  getById: (id) => api.get(`/warehouses/${id}`),
+  create: (data) => api.post('/warehouses', data),
+};
+
 export default api;

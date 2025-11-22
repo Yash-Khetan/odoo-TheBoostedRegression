@@ -118,6 +118,19 @@ const TopNav = () => {
           </Link>
           
           <Link
+            to="/warehouses"
+            className="px-4 py-2 font-medium transition-colors"
+            style={location.pathname.startsWith('/warehouses') ? {
+              borderBottom: '2px solid var(--accent-green)',
+              color: 'var(--accent-green)'
+            } : {
+              color: 'var(--text-secondary)'
+            }}
+          >
+            Warehouses
+          </Link>
+          
+          <Link
             to="/reports"
             className="px-4 py-2 font-medium transition-colors"
             style={location.pathname === '/reports' ? {

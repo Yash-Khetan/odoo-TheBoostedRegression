@@ -4,11 +4,11 @@ export const getAllReceipts = async (req, res) => {
   try {
     const result = await pool.query(
       `SELECT r.receipt_id as id, r.supplier_name as vendor, r.receipt_date as schedule_date, 
-        r.reference_number, r.notes, r.created_at, r.created_by, 'done' as status,
+        r.reference_number, r.notes, r.created_at, r.created_by, COALESCE(r.status, 'draft') as status,
         COUNT(ri.id) as item_count 
       FROM receipts r 
       LEFT JOIN receipt_items ri ON r.receipt_id = ri.receipt_id 
-      GROUP BY r.receipt_id, r.supplier_name, r.receipt_date, r.reference_number, r.notes, r.created_at, r.created_by
+      GROUP BY r.receipt_id, r.supplier_name, r.receipt_date, r.reference_number, r.notes, r.created_at, r.created_by, r.status
       ORDER BY r.created_at DESC`
     );
     res.json(result.rows);
@@ -23,7 +23,7 @@ export const getReceiptById = async (req, res) => {
     
     const receiptResult = await pool.query(
       `SELECT receipt_id as id, supplier_name as vendor, receipt_date as schedule_date, 
-        reference_number, notes, created_at, created_by, 'done' as status
+        reference_number, notes, created_at, created_by, COALESCE(status, 'draft') as status
       FROM receipts WHERE receipt_id=$1`,
       [receiptId]
     );

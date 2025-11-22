@@ -1,12 +1,14 @@
 import express from "express";
 import {
   createWarehouse,
-  getWarehouses
+  getAllWarehouses,
+  getWarehouseById
 } from "../controllers/warehouseController.js";
 
 const router = express.Router();
 
+router.get("/", getAllWarehouses);
+router.get("/:warehouseId", getWarehouseById);
 router.post("/", createWarehouse);
-router.get("/", getWarehouses);
 
 export default router;
