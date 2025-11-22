@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { receiptsAPI } from '@/services/api';
+import CreateReceiptModal from '@/components/CreateReceiptModal';
 
 const Receipts = () => {
   const navigate = useNavigate();
@@ -12,6 +13,7 @@ const Receipts = () => {
   const [receipts, setReceipts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showCreateModal, setShowCreateModal] = useState(false);
 
   useEffect(() => {
     fetchReceipts();
@@ -68,9 +70,9 @@ const Receipts = () => {
         <h1 className="text-3xl font-bold m-0" style={{ color: 'var(--text-primary)' }}>
           Receipts
         </h1>
-        <Button>
-          <Plus className="w-4 h-4" />
-          NEW
+        <Button onClick={() => setShowCreateModal(true)}>
+          <Plus className="w-4 h-4 mr-2" />
+          Create Receipt
         </Button>
       </div>
 
@@ -194,11 +196,21 @@ const Receipts = () => {
                   onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                 >
                   <td style={{ 
-                    padding: '16px 24px',
-                    color: 'var(--text-primary)',
-                    fontWeight: '600'
+                    padding: '16px 24px'
                   }}>
-                    WH/IN/{String(receipt.id).padStart(4, '0')}
+                    <button
+                      onClick={() => handleReceiptClick(receipt.id)}
+                      style={{
+                        color: 'var(--primary)',
+                        fontWeight: '600',
+                        background: 'none',
+                        border: 'none',
+                        cursor: 'pointer',
+                        textDecoration: 'underline'
+                      }}
+                    >
+                      WH/IN/{String(receipt.id).padStart(4, '0')}
+                    </button>
                   </td>
                   <td style={{ 
                     padding: '16px 24px',
@@ -235,6 +247,13 @@ const Receipts = () => {
           </tbody>
         </table>
       </div>
+
+      {/* Create Receipt Modal */}
+      <CreateReceiptModal
+        isOpen={showCreateModal}
+        onClose={() => setShowCreateModal(false)}
+        onSuccess={fetchReceipts}
+      />
     </div>
   );
 };

@@ -53,11 +53,11 @@ export const getDeliveryById = async (req, res) => {
 
 export const createDelivery = async (req, res) => {
   try {
-    const { customer, schedule_date, responsible } = req.body;
+    const { customer_name, delivery_date, reference_number, notes, product_id, quantity, warehouse_id } = req.body;
 
     const result = await pool.query(
-      "INSERT INTO deliveries (customer, schedule_date, responsible, status) VALUES ($1, $2, $3, 'draft') RETURNING *",
-      [customer, schedule_date, responsible]
+      "INSERT INTO deliveries (customer_name, delivery_date, reference_number, notes, product_id, quantity, warehouse_id, status) VALUES ($1, $2, $3, $4, $5, $6, $7, 'draft') RETURNING delivery_id as id, customer_name, delivery_date, reference_number, notes, product_id, quantity, warehouse_id, status",
+      [customer_name, delivery_date, reference_number, notes || null, product_id, quantity, warehouse_id]
     );
 
     res.json(result.rows[0]);
@@ -68,11 +68,11 @@ export const createDelivery = async (req, res) => {
 
 export const addDeliveryItem = async (req, res) => {
   try {
-    const { product_id, qty } = req.body;
+    const { product_id, qty, warehouse_id } = req.body;
 
     await pool.query(
-      "INSERT INTO delivery_items (delivery_id, product_id, qty) VALUES ($1,$2,$3)",
-      [req.params.deliveryId, product_id, qty]
+      "INSERT INTO delivery_items (delivery_id, product_id, qty, warehouse_id) VALUES ($1, $2, $3, $4)",
+      [req.params.deliveryId, product_id, qty, warehouse_id]
     );
 
     res.json({ message: "Delivery item added" });

@@ -7,12 +7,14 @@ import { Input } from '@/components/ui/input';
 import { Select } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import { deliveriesAPI } from '@/services/api';
+import CreateDeliveryModal from '@/components/CreateDeliveryModal';
 
 const Deliveries = () => {
   const navigate = useNavigate();
   const [deliveries, setDeliveries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showCreateModal, setShowCreateModal] = useState(false);
 
   useEffect(() => {
     fetchDeliveries();
@@ -71,8 +73,8 @@ const Deliveries = () => {
           <h1 className="text-3xl font-bold text-gray-900">Deliveries</h1>
           <p className="text-gray-500 mt-1">Manage outgoing shipments and customer orders</p>
         </div>
-        <Button>
-          <Plus className="w-4 h-4" />
+        <Button onClick={() => setShowCreateModal(true)}>
+          <Plus className="w-4 h-4 mr-2" />
           Create Delivery
         </Button>
       </div>
@@ -199,6 +201,13 @@ const Deliveries = () => {
           </div>
         </CardFooter>
       </Card>
+
+      {/* Create Delivery Modal */}
+      <CreateDeliveryModal
+        isOpen={showCreateModal}
+        onClose={() => setShowCreateModal(false)}
+        onSuccess={fetchDeliveries}
+      />
     </div>
   );
 };

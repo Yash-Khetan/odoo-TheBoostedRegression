@@ -52,11 +52,11 @@ export const getReceiptById = async (req, res) => {
 
 export const createReceipt = async (req, res) => {
   try {
-    const { vendor, schedule_date, responsible } = req.body;
+    const { supplier_name, receipt_date, reference_number, notes, product_id, quantity, warehouse_id } = req.body;
 
     const result = await pool.query(
-      "INSERT INTO receipts (vendor, schedule_date, responsible, status) VALUES ($1, $2, $3, 'draft') RETURNING *",
-      [vendor, schedule_date, responsible]
+      "INSERT INTO receipts (supplier_name, receipt_date, reference_number, notes, product_id, quantity, warehouse_id, status) VALUES ($1, $2, $3, $4, $5, $6, $7, 'draft') RETURNING receipt_id as id, supplier_name, receipt_date, reference_number, notes, product_id, quantity, warehouse_id, status",
+      [supplier_name, receipt_date, reference_number, notes || null, product_id, quantity, warehouse_id]
     );
 
     res.json(result.rows[0]);
@@ -67,11 +67,11 @@ export const createReceipt = async (req, res) => {
 
 export const addReceiptItem = async (req, res) => {
   try {
-    const { product_id, qty } = req.body;
+    const { product_id, qty, warehouse_id } = req.body;
 
     await pool.query(
-      "INSERT INTO receipt_items (receipt_id,product_id,qty) VALUES ($1,$2,$3)",
-      [req.params.receiptId, product_id, qty]
+      "INSERT INTO receipt_items (receipt_id, product_id, qty, warehouse_id) VALUES ($1, $2, $3, $4)",
+      [req.params.receiptId, product_id, qty, warehouse_id]
     );
 
     res.json({ message: "Item added" });

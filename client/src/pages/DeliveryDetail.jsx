@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Plus, Check } from 'lucide-react';
+import { ArrowLeft, Plus, Check, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
-import { deliveriesAPI } from '@/services/api';
+import { deliveriesAPI, productsAPI, warehousesAPI } from '@/services/api';
 
 const DeliveryDetail = () => {
   const { id } = useParams();
@@ -12,9 +12,16 @@ const DeliveryDetail = () => {
   const [delivery, setDelivery] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showAddProduct, setShowAddProduct] = useState(false);
+  const [products, setProducts] = useState([]);
+  const [warehouses, setWarehouses] = useState([]);
+  const [newItem, setNewItem] = useState({ product_id: '', qty: '', warehouse_id: '' });
+  const [validating, setValidating] = useState(false);
 
   useEffect(() => {
     fetchDelivery();
+    fetchProducts();
+    fetchWarehouses();
   }, [id]);
 
   const fetchDelivery = async () => {
@@ -31,14 +38,60 @@ const DeliveryDetail = () => {
     }
   };
 
-  const handleValidate = async () => {
+  const fetchProducts = async () => {
     try {
+      const response = await productsAPI.getAll();
+      setProducts(response.data);
+    } catch (err) {
+      console.error('Error fetching products:', err);
+    }
+  };
+
+  const fetchWarehouses = async () => {
+    try {
+      const response = await warehousesAPI.getAll();
+      setWarehouses(response.data);
+    } catch (err) {
+      console.error('Error fetching warehouses:', err);
+    }
+  };
+
+  const handleValidate = async () => {
+    // Check if there are items
+    if (!delivery.items || delivery.items.length === 0) {
+      alert('Cannot validate delivery: Please add at least one product');
+      return;
+    }
+
+    try {
+      setValidating(true);
       await deliveriesAPI.validate(id);
       // Refresh delivery data to get updated status
       await fetchDelivery();
+      alert('Delivery validated successfully!');
     } catch (err) {
       console.error('Error validating delivery:', err);
-      alert('Failed to validate delivery');
+      alert(err.response?.data?.error || 'Failed to validate delivery');
+    } finally {
+      setValidating(false);
+    }
+  };
+
+  const handleAddProduct = async () => {
+    if (!newItem.product_id || !newItem.qty || !newItem.warehouse_id) {
+      alert('Please fill all product details');
+      return;
+    }
+
+    try {
+      await deliveriesAPI.addItem(id, newItem);
+      setShowAddProduct(false);
+      setNewItem({ product_id: '', qty: '', warehouse_id: '' });
+      await fetchDelivery();
+      alert('Product added successfully!');
+    } catch (err) {
+      console.error('Error adding product:', err);
+      alert(err.response?.data?.error || 'Failed to add product');
     }
   };
 
@@ -94,9 +147,9 @@ const DeliveryDetail = () => {
         </div>
         <div className="flex gap-3">
           {canValidate && (
-            <Button onClick={handleValidate}>
-              <Check className="w-4 h-4" />
-              Validate
+            <Button onClick={handleValidate} disabled={validating}>
+              <Check className="w-4 h-4 mr-2" />
+              {validating ? 'Validating...' : 'Validate'}
             </Button>
           )}
           {getStatusBadge(delivery.status)}
@@ -187,13 +240,110 @@ const DeliveryDetail = () => {
           <h2 className="text-xl font-semibold" style={{ color: 'var(--text-primary)' }}>
             Products
           </h2>
-          {delivery.status === 'draft' && (
-            <Button variant="outline" size="sm">
-              <Plus className="w-4 h-4" />
+          {delivery.status !== 'done' && !showAddProduct && (
+            <Button variant="outline" size="sm" onClick={() => setShowAddProduct(true)}>
+              <Plus className="w-4 h-4 mr-2" />
               Add Product
             </Button>
           )}
         </div>
+
+        {/* Add Product Form */}
+        {showAddProduct && delivery.status !== 'done' && (
+          <Card className="mb-4 p-4" style={{ backgroundColor: 'rgba(59, 130, 246, 0.05)', border: '1px solid rgb(59, 130, 246)' }}>
+            <div className="flex items-center justify-between mb-3">
+              <h4 className="font-medium" style={{ color: 'var(--text-primary)' }}>Add New Product</h4>
+              <button
+                onClick={() => {
+                  setShowAddProduct(false);
+                  setNewItem({ product_id: '', qty: '', warehouse_id: '' });
+                }}
+                className="p-1 rounded hover:bg-gray-200"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+            <div className="grid grid-cols-3 gap-3">
+              <div>
+                <label className="block text-xs font-medium mb-1" style={{ color: 'var(--text-primary)' }}>
+                  Product *
+                </label>
+                <select
+                  value={newItem.product_id}
+                  onChange={(e) => setNewItem({ ...newItem, product_id: e.target.value })}
+                  className="w-full px-3 py-2 rounded-lg text-sm"
+                  style={{
+                    border: '1px solid var(--border-color)',
+                    backgroundColor: 'var(--bg-card)'
+                  }}
+                >
+                  <option value="">Select product</option>
+                  {products.map((product) => (
+                    <option key={product.id} value={product.id}>
+                      {product.name} ({product.sku})
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label className="block text-xs font-medium mb-1" style={{ color: 'var(--text-primary)' }}>
+                  Quantity *
+                </label>
+                <input
+                  type="number"
+                  min="1"
+                  value={newItem.qty}
+                  onChange={(e) => setNewItem({ ...newItem, qty: e.target.value })}
+                  className="w-full px-3 py-2 rounded-lg text-sm"
+                  style={{
+                    border: '1px solid var(--border-color)',
+                    backgroundColor: 'var(--bg-card)'
+                  }}
+                  placeholder="Enter qty"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-medium mb-1" style={{ color: 'var(--text-primary)' }}>
+                  Warehouse *
+                </label>
+                <select
+                  value={newItem.warehouse_id}
+                  onChange={(e) => setNewItem({ ...newItem, warehouse_id: e.target.value })}
+                  className="w-full px-3 py-2 rounded-lg text-sm"
+                  style={{
+                    border: '1px solid var(--border-color)',
+                    backgroundColor: 'var(--bg-card)'
+                  }}
+                >
+                  <option value="">Select warehouse</option>
+                  {warehouses.map((warehouse) => (
+                    <option key={warehouse.id} value={warehouse.id}>
+                      {warehouse.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+            <div className="flex justify-end gap-2 mt-3">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => {
+                  setShowAddProduct(false);
+                  setNewItem({ product_id: '', qty: '', warehouse_id: '' });
+                }}
+              >
+                Cancel
+              </Button>
+              <Button
+                size="sm"
+                onClick={handleAddProduct}
+              >
+                Add Product
+              </Button>
+            </div>
+          </Card>
+        )}
 
         <div 
           className="rounded-xl overflow-hidden"
