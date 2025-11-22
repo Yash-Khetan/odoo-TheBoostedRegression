@@ -5,6 +5,13 @@ A comprehensive, real-time inventory management system built with React, Node.js
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
+## 👥 Team - TheBoostedRegression
+
+- **Deep**
+- **Abhishek** 
+- **Rishikesh** 
+- **Yash**
+
 ## 🚀 Features
 
 ### 📦 Product Management
@@ -367,11 +374,7 @@ Contributions are welcome! Please follow these steps:
 ## 📝 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 👥 Team
-
-- **Rishikesh** - Project Lead
-- **Yash** - Developer
+ 
 
 ## 📧 Support
 
