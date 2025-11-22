@@ -1,0 +1,33 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout';
+import Dashboard from './pages/Dashboard';
+import Products from './pages/Products';
+import ProductDetails from './pages/ProductDetails';
+import Receipts from './pages/Receipts';
+import Deliveries from './pages/Deliveries';
+import CreateOrder from './pages/CreateOrder';
+import Reports from './pages/Reports';
+import Settings from './pages/Settings';
+import './index.css';
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="products" element={<Products />} />
+          <Route path="products/:id" element={<ProductDetails />} />
+          <Route path="receipts" element={<Receipts />} />
+          <Route path="deliveries" element={<Deliveries />} />
+          <Route path="create-order" element={<CreateOrder />} />
+          <Route path="reports" element={<Reports />} />
+          <Route path="settings" element={<Settings />} />
+        </Route>
+      </Routes>
+    </Router>
+  );
+}
+
+export default App;

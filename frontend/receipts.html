@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Receipts - StockMaster</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <i data-lucide="package"></i> StockMaster
+      </div>
+      <nav>
+        <ul class="sidebar-nav">
+          <li class="sidebar-nav-item">
+            <a href="dashboard.html" class="sidebar-nav-link">
+              <i data-lucide="layout-dashboard"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="products.html" class="sidebar-nav-link">
+              <i data-lucide="package"></i>
+              <span>Products</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="receipts.html" class="sidebar-nav-link active">
+              <i data-lucide="inbox"></i>
+              <span>Receipts</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="deliveries.html" class="sidebar-nav-link">
+              <i data-lucide="send"></i>
+              <span>Deliveries</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="reports.html" class="sidebar-nav-link">
+              <i data-lucide="trending-up"></i>
+              <span>Reports</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="settings.html" class="sidebar-nav-link">
+              <i data-lucide="settings"></i>
+              <span>Settings</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Page Header -->
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">Receipts</h1>
+          <p class="page-subtitle">Manage incoming shipments and stock receipts</p>
+        </div>
+        <div>
+          <a href="create-order.html" class="btn btn-primary">
+            <i data-lucide="plus"></i>
+            <span>Create Receipt</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Toolbar: Filters -->
+      <div class="toolbar">
+        <div class="toolbar-left">
+          <div class="search-box">
+            <i data-lucide="search"></i>
+            <input 
+              type="text" 
+              class="form-control" 
+              placeholder="Search by reference or vendor..."
+            >
+          </div>
+          <select class="form-select" style="width: 180px;">
+            <option value="">All Status</option>
+            <option value="draft">Draft</option>
+            <option value="ready">Ready</option>
+            <option value="done">Done</option>
+            <option value="cancelled">Cancelled</option>
+          </select>
+          <input type="date" class="form-control" style="width: 180px;">
+        </div>
+        <div class="toolbar-right">
+          <button class="btn btn-outline btn-sm">
+            <i data-lucide="download"></i>
+            <span>Export</span>
+          </button>
+          <button class="btn-icon"><i data-lucide="settings"></i></button>
+        </div>
+      </div>
+
+      <!-- Summary Cards -->
+      <div class="grid grid-4 mb-xl">
+        <div class="kpi-card">
+          <span class="kpi-label">Total Receipts</span>
+          <span class="kpi-value">156</span>
+          <span class="text-small text-muted">This month</span>
+        </div>
+
+        <div class="kpi-card">
+          <span class="kpi-label">Pending</span>
+          <span class="kpi-value">12</span>
+          <span class="pill pill-warning" style="margin-top: 8px;">Awaiting processing</span>
+        </div>
+
+        <div class="kpi-card">
+          <span class="kpi-label">Completed Today</span>
+          <span class="kpi-value">8</span>
+          <span class="pill pill-success" style="margin-top: 8px;">+3 from yesterday</span>
+        </div>
+
+        <div class="kpi-card">
+          <span class="kpi-label">Total Value</span>
+          <span class="kpi-value">$89,450</span>
+          <span class="text-small text-muted">This month</span>
+        </div>
+      </div>
+
+      <!-- Receipts Table -->
+      <div class="card card-white">
+        <div class="card-header">
+          <h3 class="card-title">All Receipts</h3>
+          <div class="d-flex gap-sm">
+            <button class="btn-icon"><i data-lucide="refresh-cw"></i></button>
+            <button class="btn-icon"><i data-lucide="more-vertical"></i></button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Reference</th>
+                  <th>Vendor</th>
+                  <th>Scheduled Date</th>
+                  <th>Products</th>
+                  <th>Total Qty</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <strong>REC-1045</strong>
+                    <div class="text-small text-muted">Created: Nov 20, 2025</div>
+                  </td>
+                  <td>
+                    <strong>Acme Supplies Co.</strong>
+                    <div class="text-small text-muted">acme@supplies.com</div>
+                  </td>
+                  <td>Nov 25, 2025</td>
+                  <td>5 items</td>
+                  <td><strong>250</strong> units</td>
+                  <td><span class="pill pill-complete">Done</span></td>
+                  <td>
+                    <div class="table-actions">
+                      <button class="btn btn-outline btn-sm">View</button>
+                      <button class="btn-icon">⋮</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>REC-1044</strong>
+                    <div class="text-small text-muted">Created: Nov 19, 2025</div>
+                  </td>
+                  <td>
+                    <strong>Global Electronics Ltd.</strong>
+                    <div class="text-small text-muted">sales@globalelec.com</div>
+                  </td>
+                  <td>Nov 23, 2025</td>
+                  <td>3 items</td>
+                  <td><strong>150</strong> units</td>
+                  <td><span class="pill pill-processing">Ready</span></td>
+                  <td>
+                    <div class="table-actions">
+                      <button class="btn btn-outline btn-sm">View</button>
+                      <button class="btn btn-primary btn-sm">Process</button>
+                      <button class="btn-icon">⋮</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>REC-1043</strong>
+                    <div class="text-small text-muted">Created: Nov 18, 2025</div>
+                  </td>
+                  <td>
+                    <strong>Premium Parts Inc.</strong>
+                    <div class="text-small text-muted">orders@premiumparts.com</div>
+                  </td>
+                  <td>Nov 22, 2025</td>
+                  <td>8 items</td>
+                  <td><strong>420</strong> units</td>
+                  <td><span class="pill pill-complete">Done</span></td>
+                  <td>
+                    <div class="table-actions">
+                      <button class="btn btn-outline btn-sm">View</button>
+                      <button class="btn-icon">⋮</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>REC-1042</strong>
+                    <div class="text-small text-muted">Created: Nov 18, 2025</div>
+                  </td>
+                  <td>
+                    <strong>Industrial Components Co.</strong>
+                    <div class="text-small text-muted">contact@indcomp.com</div>
+                  </td>
+                  <td>Nov 24, 2025</td>
+                  <td>2 items</td>
+                  <td><strong>75</strong> units</td>
+                  <td><span class="pill pill-draft">Draft</span></td>
+                  <td>
+                    <div class="table-actions">
+                      <button class="btn btn-outline btn-sm">View</button>
+                      <button class="btn btn-outline-primary btn-sm">Edit</button>
+                      <button class="btn-icon">⋮</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>REC-1041</strong>
+                    <div class="text-small text-muted">Created: Nov 17, 2025</div>
+                  </td>
+                  <td>
+                    <strong>Quick Ship Logistics</strong>
+                    <div class="text-small text-muted">support@quickship.com</div>
+                  </td>
+                  <td>Nov 21, 2025</td>
+                  <td>6 items</td>
+                  <td><strong>300</strong> units</td>
+                  <td><span class="pill pill-complete">Done</span></td>
+                  <td>
+                    <div class="table-actions">
+                      <button class="btn btn-outline btn-sm">View</button>
+                      <button class="btn-icon">⋮</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>REC-1040</strong>
+                    <div class="text-small text-muted">Created: Nov 16, 2025</div>
+                  </td>
+                  <td>
+                    <strong>Reliable Vendors LLC</strong>
+                    <div class="text-small text-muted">info@reliable.com</div>
+                  </td>
+                  <td>Nov 26, 2025</td>
+                  <td>4 items</td>
+                  <td><strong>180</strong> units</td>
+                  <td><span class="pill pill-processing">Ready</span></td>
+                  <td>
+                    <div class="table-actions">
+                      <button class="btn btn-outline btn-sm">View</button>
+                      <button class="btn btn-primary btn-sm">Process</button>
+                      <button class="btn-icon">⋮</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>REC-1039</strong>
+                    <div class="text-small text-muted">Created: Nov 15, 2025</div>
+                  </td>
+                  <td>
+                    <strong>Wholesale Suppliers</strong>
+                    <div class="text-small text-muted">orders@wholesale.com</div>
+                  </td>
+                  <td>Nov 20, 2025</td>
+                  <td>7 items</td>
+                  <td><strong>350</strong> units</td>
+                  <td><span class="pill pill-complete">Done</span></td>
+                  <td>
+                    <div class="table-actions">
+                      <button class="btn btn-outline btn-sm">View</button>
+                      <button class="btn-icon">⋮</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>REC-1038</strong>
+                    <div class="text-small text-muted">Created: Nov 15, 2025</div>
+                  </td>
+                  <td>
+                    <strong>Tech Components Group</strong>
+                    <div class="text-small text-muted">sales@techgroup.com</div>
+                  </td>
+                  <td>Nov 27, 2025</td>
+                  <td>3 items</td>
+                  <td><strong>120</strong> units</td>
+                  <td><span class="pill pill-draft">Draft</span></td>
+                  <td>
+                    <div class="table-actions">
+                      <button class="btn btn-outline btn-sm">View</button>
+                      <button class="btn btn-outline-primary btn-sm">Edit</button>
+                      <button class="btn-icon">⋮</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+        <!-- Pagination -->
+        <div class="card-footer d-flex justify-content-between align-items-center">
+          <p class="text-small text-muted mb-0">Showing 1-8 of 156 receipts</p>
+          <div class="d-flex gap-sm">
+            <button class="btn btn-outline btn-sm" disabled>Previous</button>
+            <button class="btn btn-outline btn-sm">1</button>
+            <button class="btn btn-outline btn-sm">2</button>
+            <button class="btn btn-outline btn-sm">3</button>
+            <button class="btn btn-outline btn-sm">Next</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

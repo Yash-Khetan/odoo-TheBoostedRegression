@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - StockMaster</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <i data-lucide="package"></i> StockMaster
+      </div>
+      <nav>
+        <ul class="sidebar-nav">
+          <li class="sidebar-nav-item">
+            <a href="dashboard.html" class="sidebar-nav-link active">
+              <i data-lucide="layout-dashboard"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="products.html" class="sidebar-nav-link">
+              <i data-lucide="package"></i>
+              <span>Products</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="receipts.html" class="sidebar-nav-link">
+              <i data-lucide="inbox"></i>
+              <span>Receipts</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="deliveries.html" class="sidebar-nav-link">
+              <i data-lucide="send"></i>
+              <span>Deliveries</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="reports.html" class="sidebar-nav-link">
+              <i data-lucide="trending-up"></i>
+              <span>Reports</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="settings.html" class="sidebar-nav-link">
+              <i data-lucide="settings"></i>
+              <span>Settings</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Page Header -->
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">Dashboard</h1>
+          <p class="page-subtitle">Welcome back! Here's what's happening with your inventory today.</p>
+        </div>
+        <div>
+          <button class="btn btn-primary">
+            <i data-lucide="plus"></i>
+            <span>New Operation</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- KPI Cards -->
+      <section class="grid grid-4 mb-xl">
+        <div class="kpi-card">
+          <span class="kpi-label">Total Products</span>
+          <span class="kpi-value">1,234</span>
+          <span class="kpi-change positive">
+            <i data-lucide="trending-up"></i>
+            <span>+12% from last month</span>
+          </span>
+        </div>
+
+        <div class="kpi-card">
+          <span class="kpi-label">Total Value</span>
+          <span class="kpi-value">$456,789</span>
+          <span class="kpi-change positive">
+            <i data-lucide="trending-up"></i>
+            <span>+8.2% from last month</span>
+          </span>
+        </div>
+
+        <div class="kpi-card">
+          <span class="kpi-label">Low Stock Items</span>
+          <span class="kpi-value">23</span>
+          <span class="kpi-change negative">
+            <i data-lucide="trending-up"></i>
+            <span>5 more than yesterday</span>
+          </span>
+        </div>
+
+        <div class="kpi-card">
+          <span class="kpi-label">Pending Orders</span>
+          <span class="kpi-value">47</span>
+          <span class="kpi-change positive">
+            <i data-lucide="trending-down"></i>
+            <span>-15% from last week</span>
+          </span>
+        </div>
+      </section>
+
+      <!-- Content Grid: Orders & Schedule -->
+      <div class="grid grid-2 mb-xl">
+        <!-- Recent Orders -->
+        <div class="card card-white">
+          <div class="card-header">
+            <div>
+              <h3 class="card-title">Recent Orders</h3>
+              <p class="card-subtitle">Latest incoming and outgoing operations</p>
+            </div>
+            <button class="btn btn-outline btn-sm">View All</button>
+          </div>
+          <div class="card-body">
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Order ID</th>
+                    <th>Type</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>ORD-1001</strong></td>
+                    <td>Receipt</td>
+                    <td>Nov 22, 2025</td>
+                    <td><span class="pill pill-complete">Complete</span></td>
+                    <td>
+                      <div class="table-actions">
+                        <button class="btn btn-outline btn-sm">View</button>
+                        <button class="btn-icon">⋮</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>ORD-1002</strong></td>
+                    <td>Delivery</td>
+                    <td>Nov 22, 2025</td>
+                    <td><span class="pill pill-processing">Processing</span></td>
+                    <td>
+                      <div class="table-actions">
+                        <button class="btn btn-outline btn-sm">View</button>
+                        <button class="btn-icon">⋮</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>ORD-1003</strong></td>
+                    <td>Receipt</td>
+                    <td>Nov 21, 2025</td>
+                    <td><span class="pill pill-shipped">Shipped</span></td>
+                    <td>
+                      <div class="table-actions">
+                        <button class="btn btn-outline btn-sm">View</button>
+                        <button class="btn-icon">⋮</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>ORD-1004</strong></td>
+                    <td>Delivery</td>
+                    <td>Nov 21, 2025</td>
+                    <td><span class="pill pill-draft">Draft</span></td>
+                    <td>
+                      <div class="table-actions">
+                        <button class="btn btn-outline btn-sm">View</button>
+                        <button class="btn-icon">⋮</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>ORD-1005</strong></td>
+                    <td>Receipt</td>
+                    <td>Nov 20, 2025</td>
+                    <td><span class="pill pill-complete">Complete</span></td>
+                    <td>
+                      <div class="table-actions">
+                        <button class="btn btn-outline btn-sm">View</button>
+                        <button class="btn-icon">⋮</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Production Schedule -->
+        <div class="card card-white">
+          <div class="card-header">
+            <div>
+              <h3 class="card-title">Production Schedule</h3>
+              <p class="card-subtitle">Current manufacturing progress</p>
+            </div>
+            <button class="btn-icon"><i data-lucide="more-vertical"></i></button>
+          </div>
+          <div class="card-body">
+            <div class="progress-container">
+              <div class="progress-header">
+                <span class="progress-label">Widget A - Batch #045</span>
+                <span class="progress-percentage">85%</span>
+              </div>
+              <div class="progress-bar-wrapper">
+                <div class="progress-bar" style="width: 85%"></div>
+              </div>
+              <p class="text-small text-muted" style="margin-top: 8px;">Due: Nov 25, 2025</p>
+            </div>
+
+            <div class="progress-container">
+              <div class="progress-header">
+                <span class="progress-label">Component B - Batch #102</span>
+                <span class="progress-percentage">62%</span>
+              </div>
+              <div class="progress-bar-wrapper">
+                <div class="progress-bar" style="width: 62%"></div>
+              </div>
+              <p class="text-small text-muted" style="margin-top: 8px;">Due: Nov 28, 2025</p>
+            </div>
+
+            <div class="progress-container">
+              <div class="progress-header">
+                <span class="progress-label">Assembly Line C</span>
+                <span class="progress-percentage">45%</span>
+              </div>
+              <div class="progress-bar-wrapper">
+                <div class="progress-bar warning" style="width: 45%"></div>
+              </div>
+              <p class="text-small text-muted" style="margin-top: 8px;">Due: Dec 01, 2025</p>
+            </div>
+
+            <div class="progress-container mb-0">
+              <div class="progress-header">
+                <span class="progress-label">Quality Check - Batch #089</span>
+                <span class="progress-percentage">95%</span>
+              </div>
+              <div class="progress-bar-wrapper">
+                <div class="progress-bar" style="width: 95%"></div>
+              </div>
+              <p class="text-small text-muted" style="margin-top: 8px;">Due: Nov 23, 2025</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Inventory Alerts -->
+      <section class="card card-white">
+        <div class="card-header">
+          <div>
+            <h3 class="card-title">Inventory Alerts</h3>
+            <p class="card-subtitle">Items requiring immediate attention</p>
+          </div>
+          <button class="btn btn-outline btn-sm">View All Alerts</button>
+        </div>
+        <div class="card-body">
+          <div class="alert-item">
+            <div class="alert-item-content">
+              <div class="alert-item-title">Widget A Pro - Low Stock</div>
+              <div class="alert-item-subtitle">Current: 5 units • Minimum: 20 units</div>
+            </div>
+            <button class="btn btn-secondary btn-sm">Reorder</button>
+          </div>
+
+          <div class="alert-item">
+            <div class="alert-item-content">
+              <div class="alert-item-title">Component XYZ - Out of Stock</div>
+              <div class="alert-item-subtitle">Current: 0 units • Minimum: 50 units</div>
+            </div>
+            <button class="btn btn-secondary btn-sm">Reorder</button>
+          </div>
+
+          <div class="alert-item">
+            <div class="alert-item-content">
+              <div class="alert-item-title">Raw Material 123 - Low Stock</div>
+              <div class="alert-item-subtitle">Current: 15 units • Minimum: 100 units</div>
+            </div>
+            <button class="btn btn-secondary btn-sm">Reorder</button>
+          </div>
+
+          <div class="alert-item">
+            <div class="alert-item-content">
+              <div class="alert-item-title">Packaging Materials - Low Stock</div>
+              <div class="alert-item-subtitle">Current: 25 units • Minimum: 200 units</div>
+            </div>
+            <button class="btn btn-secondary btn-sm">Reorder</button>
+          </div>
+
+          <div class="alert-item">
+            <div class="alert-item-content">
+              <div class="alert-item-title">Spare Parts Kit - Low Stock</div>
+              <div class="alert-item-subtitle">Current: 8 units • Minimum: 30 units</div>
+            </div>
+            <button class="btn btn-secondary btn-sm">Reorder</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

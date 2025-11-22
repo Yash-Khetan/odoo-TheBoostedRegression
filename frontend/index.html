@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StockMaster UI Kit - Navigation</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .index-container {
+      max-width: 800px;
+      padding: var(--spacing-xl);
+    }
+    .page-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--spacing-lg);
+      margin-top: var(--spacing-xl);
+    }
+    .page-link-card {
+      background: var(--bg-card);
+      padding: var(--spacing-lg);
+      border-radius: var(--border-radius);
+      text-decoration: none;
+      transition: all 0.2s ease;
+      border: 2px solid transparent;
+    }
+    .page-link-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--accent-green);
+    }
+    .page-link-icon {
+      font-size: 48px;
+      margin-bottom: var(--spacing-md);
+      display: block;
+    }
+    .page-link-title {
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-semibold);
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-sm);
+    }
+    .page-link-description {
+      font-size: var(--font-size-sm);
+      color: var(--text-secondary);
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="index-container">
+    <div class="text-center">
+      <h1 style="font-size: 48px; margin-bottom: 16px;"><i data-lucide="package" style="width: 48px; height: 48px;"></i> StockMaster</h1>
+      <h2 style="font-size: 24px; font-weight: 500; color: var(--text-secondary); margin-bottom: 8px;">
+        UI Kit & Design System
+      </h2>
+      <p class="text-muted">Complete HTML & CSS templates for inventory management</p>
+    </div>
+
+    <div class="page-links">
+      <a href="dashboard.html" class="page-link-card">
+        <span class="page-link-icon"><i data-lucide="layout-dashboard" style="width: 48px; height: 48px;"></i></span>
+        <div class="page-link-title">Dashboard</div>
+        <p class="page-link-description">
+          Main dashboard with KPIs, recent orders, production schedule, and inventory alerts
+        </p>
+      </a>
+
+      <a href="products.html" class="page-link-card">
+        <span class="page-link-icon"><i data-lucide="package" style="width: 48px; height: 48px;"></i></span>
+        <div class="page-link-title">Products</div>
+        <p class="page-link-description">
+          Product catalog with table view, filters, search, and bulk actions
+        </p>
+      </a>
+
+      <a href="product-details.html" class="page-link-card">
+        <span class="page-link-icon"><i data-lucide="search" style="width: 48px; height: 48px;"></i></span>
+        <div class="page-link-title">Product Details</div>
+        <p class="page-link-description">
+          Detailed product view with stock levels, locations, and movement history
+        </p>
+      </a>
+
+      <a href="receipts.html" class="page-link-card">
+        <span class="page-link-icon"><i data-lucide="inbox" style="width: 48px; height: 48px;"></i></span>
+        <div class="page-link-title">Receipts</div>
+        <p class="page-link-description">
+          Incoming shipments management with vendor info and status tracking
+        </p>
+      </a>
+
+      <a href="create-order.html" class="page-link-card">
+        <span class="page-link-icon"><i data-lucide="plus-circle" style="width: 48px; height: 48px;"></i></span>
+        <div class="page-link-title">Create Order</div>
+        <p class="page-link-description">
+          Order creation form with line items, partner selection, and validation
+        </p>
+      </a>
+
+      <a href="deliveries.html" class="page-link-card">
+        <span class="page-link-icon"><i data-lucide="send" style="width: 48px; height: 48px;"></i></span>
+        <div class="page-link-title">Deliveries</div>
+        <p class="page-link-description">
+          Outgoing shipments and customer order management
+        </p>
+      </a>
+
+      <a href="reports.html" class="page-link-card">
+        <span class="page-link-icon"><i data-lucide="trending-up" style="width: 48px; height: 48px;"></i></span>
+        <div class="page-link-title">Reports</div>
+        <p class="page-link-description">
+          Analytics, insights, and performance metrics
+        </p>
+      </a>
+
+      <a href="settings.html" class="page-link-card">
+        <span class="page-link-icon"><i data-lucide="settings" style="width: 48px; height: 48px;"></i></span>
+        <div class="page-link-title">Settings</div>
+        <p class="page-link-description">
+          Account preferences and application configuration
+        </p>
+      </a>
+
+      <a href="README_FRONTEND.md" class="page-link-card" target="_blank">
+        <span class="page-link-icon"><i data-lucide="book-open" style="width: 48px; height: 48px;"></i></span>
+        <div class="page-link-title">Documentation</div>
+        <p class="page-link-description">
+          Complete component library, design tokens, and integration guide
+        </p>
+      </a>
+    </div>
+
+    <!-- Design System Info -->
+    <div class="card card-white mt-lg">
+      <div class="card-header">
+        <h3 class="card-title">Design System Highlights</h3>
+      </div>
+      <div class="card-body">
+        <div class="grid grid-2">
+          <div>
+            <h4 class="mb-sm">🎨 Color Palette</h4>
+            <ul style="list-style: none; padding: 0; margin: 0;">
+              <li class="mb-sm">
+                <span style="display: inline-block; width: 16px; height: 16px; background: #73A97F; border-radius: 4px; margin-right: 8px;"></span>
+                Green - Complete, Success
+              </li>
+              <li class="mb-sm">
+                <span style="display: inline-block; width: 16px; height: 16px; background: #D98C73; border-radius: 4px; margin-right: 8px;"></span>
+                Orange - Reorder, Warning
+              </li>
+              <li class="mb-sm">
+                <span style="display: inline-block; width: 16px; height: 16px; background: #EEDC82; border-radius: 4px; margin-right: 8px;"></span>
+                Yellow - Processing
+              </li>
+              <li class="mb-sm">
+                <span style="display: inline-block; width: 16px; height: 16px; background: #6B9BD1; border-radius: 4px; margin-right: 8px;"></span>
+                Blue - Draft, Info
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="mb-sm">🧩 Components</h4>
+            <ul style="list-style: none; padding: 0; margin: 0;">
+              <li class="mb-sm">✓ Cards & KPI Cards</li>
+              <li class="mb-sm">✓ Buttons (Solid, Outline, Icon)</li>
+              <li class="mb-sm">✓ Tables with Actions</li>
+              <li class="mb-sm">✓ Forms & Inputs</li>
+              <li class="mb-sm">✓ Status Pills</li>
+              <li class="mb-sm">✓ Progress Bars</li>
+              <li class="mb-sm">✓ Alerts & Notifications</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="grid grid-4 mt-lg">
+      <div class="text-center">
+        <div class="fw-bold" style="font-size: 32px; color: var(--accent-green);">8</div>
+        <div class="text-small text-muted">HTML Pages</div>
+      </div>
+      <div class="text-center">
+        <div class="fw-bold" style="font-size: 32px; color: var(--accent-green);">1</div>
+        <div class="text-small text-muted">CSS File</div>
+      </div>
+      <div class="text-center">
+        <div class="fw-bold" style="font-size: 32px; color: var(--accent-green);">50+</div>
+        <div class="text-small text-muted">Components</div>
+      </div>
+      <div class="text-center">
+        <div class="fw-bold" style="font-size: 32px; color: var(--accent-green);">100%</div>
+        <div class="text-small text-muted">Responsive</div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="text-center mt-lg">
+      <p class="text-muted text-small">
+        Built for <strong>OddoXHack Hackathon 2025</strong><br>
+        Backend: FastAPI + PostgreSQL | Frontend: HTML5 + CSS3
+      </p>
+    </div>
+  </div>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

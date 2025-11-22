@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products - StockMaster</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <i data-lucide="package"></i> StockMaster
+      </div>
+      <nav>
+        <ul class="sidebar-nav">
+          <li class="sidebar-nav-item">
+            <a href="dashboard.html" class="sidebar-nav-link">
+              <i data-lucide="layout-dashboard"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="products.html" class="sidebar-nav-link active">
+              <i data-lucide="package"></i>
+              <span>Products</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="receipts.html" class="sidebar-nav-link">
+              <i data-lucide="inbox"></i>
+              <span>Receipts</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="deliveries.html" class="sidebar-nav-link">
+              <i data-lucide="send"></i>
+              <span>Deliveries</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="reports.html" class="sidebar-nav-link">
+              <i data-lucide="trending-up"></i>
+              <span>Reports</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="settings.html" class="sidebar-nav-link">
+              <i data-lucide="settings"></i>
+              <span>Settings</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Page Header -->
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">Products</h1>
+          <p class="page-subtitle">Manage your inventory catalog</p>
+        </div>
+        <div>
+          <button class="btn btn-primary">
+            <i data-lucide="plus"></i>
+            <span>Create Product</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Toolbar: Search & Filters -->
+      <div class="toolbar">
+        <div class="toolbar-left">
+          <div class="search-box">
+            <i data-lucide="search"></i>
+            <input 
+              type="text" 
+              class="form-control" 
+              placeholder="Search products by name or SKU..."
+            >
+          </div>
+          <select class="form-select" style="width: 200px;">
+            <option value="">All Categories</option>
+            <option value="electronics">Electronics</option>
+            <option value="components">Components</option>
+            <option value="raw-materials">Raw Materials</option>
+            <option value="packaging">Packaging</option>
+            <option value="finished-goods">Finished Goods</option>
+          </select>
+        </div>
+        <div class="toolbar-right">
+          <button class="btn btn-outline btn-sm">
+            <i data-lucide="download"></i>
+            <span>Export</span>
+          </button>
+          <button class="btn-icon"><i data-lucide="settings"></i></button>
+        </div>
+      </div>
+
+      <!-- Products Table -->
+      <div class="card card-white">
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Product Name</th>
+                <th>SKU</th>
+                <th>Category</th>
+                <th>Current Stock</th>
+                <th>Unit</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <strong>Widget A Pro</strong>
+                  <div class="text-small text-muted">High-performance widget</div>
+                </td>
+                <td><code>WID-A-001</code></td>
+                <td>Electronics</td>
+                <td><strong>5</strong> / 20 min</td>
+                <td>Units</td>
+                <td><span class="pill pill-low-stock">Low Stock</span></td>
+                <td>
+                  <div class="table-actions">
+                    <a href="product-details.html" class="btn btn-outline btn-sm">View</a>
+                    <button class="btn btn-outline-primary btn-sm">Edit</button>
+                    <button class="btn-icon">⋮</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Component XYZ</strong>
+                  <div class="text-small text-muted">Essential component</div>
+                </td>
+                <td><code>CMP-XYZ-045</code></td>
+                <td>Components</td>
+                <td><strong>0</strong> / 50 min</td>
+                <td>Units</td>
+                <td><span class="pill pill-danger">Out of Stock</span></td>
+                <td>
+                  <div class="table-actions">
+                    <a href="product-details.html" class="btn btn-outline btn-sm">View</a>
+                    <button class="btn btn-outline-primary btn-sm">Edit</button>
+                    <button class="btn-icon">⋮</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Raw Material 123</strong>
+                  <div class="text-small text-muted">Primary raw material</div>
+                </td>
+                <td><code>RAW-123</code></td>
+                <td>Raw Materials</td>
+                <td><strong>15</strong> / 100 min</td>
+                <td>KG</td>
+                <td><span class="pill pill-low-stock">Low Stock</span></td>
+                <td>
+                  <div class="table-actions">
+                    <a href="product-details.html" class="btn btn-outline btn-sm">View</a>
+                    <button class="btn btn-outline-primary btn-sm">Edit</button>
+                    <button class="btn-icon">⋮</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Packaging Box Standard</strong>
+                  <div class="text-small text-muted">Standard shipping box</div>
+                </td>
+                <td><code>PKG-BOX-STD</code></td>
+                <td>Packaging</td>
+                <td><strong>450</strong> / 200 min</td>
+                <td>Units</td>
+                <td><span class="pill pill-success">In Stock</span></td>
+                <td>
+                  <div class="table-actions">
+                    <a href="product-details.html" class="btn btn-outline btn-sm">View</a>
+                    <button class="btn btn-outline-primary btn-sm">Edit</button>
+                    <button class="btn-icon">⋮</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Finished Product Alpha</strong>
+                  <div class="text-small text-muted">Ready for shipment</div>
+                </td>
+                <td><code>FIN-ALPHA-01</code></td>
+                <td>Finished Goods</td>
+                <td><strong>120</strong> / 50 min</td>
+                <td>Units</td>
+                <td><span class="pill pill-success">In Stock</span></td>
+                <td>
+                  <div class="table-actions">
+                    <a href="product-details.html" class="btn btn-outline btn-sm">View</a>
+                    <button class="btn btn-outline-primary btn-sm">Edit</button>
+                    <button class="btn-icon">⋮</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Component Beta</strong>
+                  <div class="text-small text-muted">Secondary component</div>
+                </td>
+                <td><code>CMP-BETA-007</code></td>
+                <td>Components</td>
+                <td><strong>89</strong> / 30 min</td>
+                <td>Units</td>
+                <td><span class="pill pill-success">In Stock</span></td>
+                <td>
+                  <div class="table-actions">
+                    <a href="product-details.html" class="btn btn-outline btn-sm">View</a>
+                    <button class="btn btn-outline-primary btn-sm">Edit</button>
+                    <button class="btn-icon">⋮</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Spare Parts Kit</strong>
+                  <div class="text-small text-muted">Complete spare parts set</div>
+                </td>
+                <td><code>SPR-KIT-001</code></td>
+                <td>Components</td>
+                <td><strong>8</strong> / 30 min</td>
+                <td>Kits</td>
+                <td><span class="pill pill-low-stock">Low Stock</span></td>
+                <td>
+                  <div class="table-actions">
+                    <a href="product-details.html" class="btn btn-outline btn-sm">View</a>
+                    <button class="btn btn-outline-primary btn-sm">Edit</button>
+                    <button class="btn-icon">⋮</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Electronic Board V2</strong>
+                  <div class="text-small text-muted">Circuit board assembly</div>
+                </td>
+                <td><code>PCB-V2-034</code></td>
+                <td>Electronics</td>
+                <td><strong>67</strong> / 40 min</td>
+                <td>Units</td>
+                <td><span class="pill pill-success">In Stock</span></td>
+                <td>
+                  <div class="table-actions">
+                    <a href="product-details.html" class="btn btn-outline btn-sm">View</a>
+                    <button class="btn btn-outline-primary btn-sm">Edit</button>
+                    <button class="btn-icon">⋮</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Packaging Materials Set</strong>
+                  <div class="text-small text-muted">Labels, tape, cushioning</div>
+                </td>
+                <td><code>PKG-MAT-SET</code></td>
+                <td>Packaging</td>
+                <td><strong>25</strong> / 200 min</td>
+                <td>Sets</td>
+                <td><span class="pill pill-low-stock">Low Stock</span></td>
+                <td>
+                  <div class="table-actions">
+                    <a href="product-details.html" class="btn btn-outline btn-sm">View</a>
+                    <button class="btn btn-outline-primary btn-sm">Edit</button>
+                    <button class="btn-icon">⋮</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Quality Control Tools</strong>
+                  <div class="text-small text-muted">Testing equipment</div>
+                </td>
+                <td><code>QC-TOOLS-01</code></td>
+                <td>Components</td>
+                <td><strong>12</strong> / 10 min</td>
+                <td>Sets</td>
+                <td><span class="pill pill-success">In Stock</span></td>
+                <td>
+                  <div class="table-actions">
+                    <a href="product-details.html" class="btn btn-outline btn-sm">View</a>
+                    <button class="btn btn-outline-primary btn-sm">Edit</button>
+                    <button class="btn-icon">⋮</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <!-- Pagination -->
+        <div class="card-footer d-flex justify-content-between align-items-center">
+          <p class="text-small text-muted mb-0">Showing 1-10 of 234 products</p>
+          <div class="d-flex gap-sm">
+            <button class="btn btn-outline btn-sm" disabled>Previous</button>
+            <button class="btn btn-outline btn-sm">1</button>
+            <button class="btn btn-outline btn-sm">2</button>
+            <button class="btn btn-outline btn-sm">3</button>
+            <button class="btn btn-outline btn-sm">Next</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
