@@ -7,6 +7,7 @@ import deliveryRoutes from "./routes/deliveryRoutes.js";
 import transferRoutes from "./routes/transferRoutes.js";
 import adjustmentRoutes from "./routes/adjustmentRoutes.js";
 import warehouseRoutes from "./routes/warehouseRoutes.js";
+import inventoryRoutes from "./routes/inventoryRoutes.js";
 
 dotenv.config();
 const app = express();
@@ -21,6 +22,7 @@ app.use("/api/deliveries", deliveryRoutes);
 app.use("/api/transfers", transferRoutes);
 app.use("/api/adjustments", adjustmentRoutes);
 app.use("/api/warehouses", warehouseRoutes);
+app.use("/api/inventory", inventoryRoutes);
 
 app.get("/", (req, res) => {
   res.send("IMS Backend Running...");
